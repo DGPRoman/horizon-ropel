@@ -112,7 +112,7 @@
   endif
 %}
 
-{% capture media_slot_1 %}
+    {% capture media_slot_1 %}
   {%- if media_1 == 'image' and media_1_mobile == 'image' -%}
     {%- comment -%} Both desktop and mobile are images. Assume similar images, and this is art direction: use picture element. {%- endcomment -%}
     <picture
@@ -324,7 +324,8 @@
   {{ media_slot_1 }}
   {{ media_slot_2 }}
 
-  {% if media_count == 0 %}
+  {% comment %} Fork: show the onboarding placeholder only in the theme editor {% endcomment %}
+  {% if media_count == 0 and request.design_mode %}
     {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
   {%- endif -%}
 {% endcapture %}
